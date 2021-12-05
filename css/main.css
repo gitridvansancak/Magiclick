@@ -1,0 +1,246 @@
+/* Varibles */
+/* Font */
+@font-face {
+  font-family: 'Roboto';
+  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: local("Roboto Medium"), local("Roboto-Medium"), url("../fonts/Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: local("Roboto Bold"), local("Roboto-Bold"), url("../fonts/Roboto-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Main.CSS */
+.input-global {
+  height: 48px;
+  font-size: 16px;
+  text-indent: 15px;
+  font-weight: 500;
+  border: 0px;
+  background: #ffffff;
+}
+
+.desk-none {
+  display: none;
+}
+
+#main-container {
+  width: 100%;
+  display: block;
+  padding: 30px 0px;
+}
+
+#main-container h1 {
+  display: block;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.exc-list {
+  margin: 0px;
+}
+
+.exc-list > .row > .col-md-6:last-child .exc-item {
+  border-color: #ffffff;
+}
+
+.exc-list > .row > .col-md-6:nth-last-child(2) .exc-item {
+  border-color: #ffffff;
+}
+
+.exc-list .item-exchange:nth-child(even) {
+  padding-left: 40px;
+}
+
+.exc-list .item-exchange:nth-child(odd) {
+  padding-right: 40px;
+}
+
+.exc-list .item-exchange .exc-item {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  border-bottom: 1px solid #bac9d5;
+}
+
+.exc-list .item-exchange .exc-item .exc-type {
+  padding-right: 0px;
+}
+
+.exc-list .item-exchange .exc-item .exc-type p {
+  margin: 2px 0 5px 0px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.exc-list .item-exchange .exc-item .exc-type span {
+  margin: 2px 0 6px 0px;
+  font-size: 12px;
+}
+
+.exc-list .item-exchange .exc-item .exc-buy p {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: right;
+  color: #4f6477 !important;
+}
+
+.exc-list .item-exchange .exc-item .exc-buy span {
+  display: block;
+  font-size: 16px;
+  text-align: right;
+  margin-top: 12px;
+}
+
+.exc-list .item-exchange .exc-item .exc-sell p {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: right;
+  color: #4f6477 !important;
+}
+
+.exc-list .item-exchange .exc-item .exc-sell span {
+  display: block;
+  font-size: 16px;
+  text-align: right;
+  margin-top: 12px;
+}
+
+.exc-buttons {
+  display: block;
+  margin-top: 10px;
+}
+
+.exc-buttons a {
+  height: 48px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  line-height: 48px;
+  width: 100%;
+  display: block;
+  font-size: 15px;
+  font-weight: bold;
+  background: #ffffff;
+  border: 2px solid #4f6477;
+  text-align: center;
+}
+
+.exc-buttons .row .col-md-6:first-child {
+  padding-right: 40px;
+}
+
+.exc-buttons .row .col-md-6:first-child a {
+  background: #2b3b48;
+  color: #ffffff;
+  border: 0px;
+}
+
+.exc-buttons .row .col-md-6:last-child {
+  padding-left: 40px;
+}
+
+.exc-buttons .row .col-md-6:last-child a {
+  color: #2b3b48;
+}
+
+.exc-change {
+  margin-top: 25px;
+  padding: 0 40px;
+  padding-left: 60px;
+}
+
+.exc-change .exc-change-inner {
+  padding: 0px 20px;
+  background-image: linear-gradient(154deg, #2b3b48 32%, #8093a5 115%);
+  padding-top: 30px;
+  text-align: center;
+  float: left;
+  width: 100%;
+}
+
+.exc-change .exc-change-inner .nice-select {
+  border-radius: 0px;
+  float: right;
+  height: 48px;
+  line-height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 35%;
+  clear: initial;
+  border: 0px;
+  border-left: 1px solid #eaeef2;
+}
+
+.exc-change .exc-change-inner .nice-select .list {
+  border-radius: 0px;
+  width: 100%;
+}
+
+.exc-change .exc-change-inner .nice-select:after {
+  border-bottom: 2px solid #2b3b48;
+  border-right: 2px solid #2b3b48;
+  height: 8px;
+  width: 8px;
+  right: 20px;
+  margin-top: -6px;
+}
+
+.exc-change .exc-change-inner h3 {
+  color: #ffffff !important;
+  font-size: 20px;
+  text-align: center;
+}
+
+.exc-change .exc-change-inner .exc-input {
+  margin-top: 40px;
+  float: left;
+  width: 100%;
+}
+
+.exc-change .exc-change-inner img {
+  margin: 20px auto;
+  width: 48px;
+}
+
+.exc-change .exc-change-inner input {
+  float: right;
+  width: 65%;
+}
+
+.exc-change .exc-change-inner .exc-result {
+  float: left;
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.exc-change .exc-change-inner .exc-result input {
+  width: 100%;
+  display: block;
+}
+
+.exc-change .exc-change-inner .exc-result:after {
+  content: 'TL';
+  display: block;
+  height: 48px;
+  width: auto;
+  position: absolute;
+  right: 20px;
+  line-height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+}
+/*# sourceMappingURL=main.css.map */

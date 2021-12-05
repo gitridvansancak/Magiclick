@@ -1,0 +1,26 @@
+/* Responsive.CSS */
+@media only screen and (max-width: 1200px){
+	.exc-change {padding: 0 25px;}
+	.exc-type {padding-right: 0px;}
+	#itemListContent .item-exchange {padding: 0 15px;}
+	.exc-change {padding-left: 15px;}
+	.exc-buttons .row .col-md-6 {padding: 0 15px !important;}
+}
+@media only screen and (max-width: 992px){
+	.exc-change {padding: 0px 15px; margin-top: 0px;}
+	.exc-buttons .row .col-md-6:first-child a {margin-bottom: 5px;}
+	.exc-buttons .row .col-md-6:last-child a {font-size: 16px; position: relative;}
+	.exc-buttons .row .col-md-6:last-child a img {position: relative; top: 10px; right: -2px;}
+	.exc-buttons a {border: 0px;}
+	.exc-list .exc-item {padding-top: 25px; padding-bottom: 25px;}
+	.desk-none {display: inline-block;}
+	.exc-list > .row > .col-md-6:nth-last-child(2) .exc-item {border-bottom: 1px solid #bac9d5;}	
+}
+@media only screen and (max-width: 768px){
+	.exc-buttons {padding: 0px 15px;}
+	.col-md-4.exc-change {padding: 0 15px; width: 100% !important; margin-bottom: 15px;}
+	#main-container h1 {font-size: 22px;}
+}
+@media only screen and (max-width: 500px){
+	.exc-buttons .row .col-md-6:last-child a:after {right: 15%;}
+}

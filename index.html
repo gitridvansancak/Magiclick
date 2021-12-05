@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Lorem ipsum">
+	<meta name="description" content="Lorem ipsum">
+    <meta name="author" content="Lorem ipsum">
+	<title>Döviz Çevirici</title>
+	<!-- Css -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/nice-select.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/responsive.css">
+	<link rel="stylesheet" href="css/reset.css">
+</head>
+<body>
+	<!-- Main Container -->
+	<div id="main-container">
+		<div class="container">
+			<div class="row">
+
+				<!-- Title -->
+				<div class="col-md-12">
+					<h1>Piyasalar</h1>
+				</div>
+				<!-- #Title -->
+
+				<!-- Markets List -->
+				<div class="col-md-8 col-sm-12 col-xs-12 exc-list">
+					<div class="row" id="itemListContent">
+						
+						
+					</div>
+				</div>
+				<!-- #Markets List -->
+
+				<!-- Exchange -->
+				<div class="col-md-4 col-sm-12 col-xs-12 exc-change">
+					<div class="exc-change-inner">
+						<h3>Döviz Çevir</h3>
+						<div class="exc-input">
+							<select id="exc-select">
+							</select>
+							<input type="text" class="input-global mask-money" id="money"/>
+						</div>
+						<img src="img/change-icon.svg" alt="Button Change">
+						<div class="exc-result">
+							<input type="text" class="input-global mask-money-response" id="response-money"/>
+						</div>
+					</div>
+				</div>
+				<!-- #Exchange -->
+
+				<!-- Bottom Buttons -->
+				<div class="exc-buttons col-md-8 col-xs-12">
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							<a href="javascript:;" title="Detaylı bilgi">Detaylı Bilgi</a>
+						</div>
+						<div class="col-md-6 col-xs-12">
+							<a href="javascript:;" title="Tüm piyasalar">Tüm Piyasalar <img src="img/go-icon.svg" class="desk-none" alt="Go arrow"></a>
+						</div>
+					</div>
+				</div>
+				<!-- #Bottom Buttons -->
+
+			</div>
+		</div>
+	</div>
+	<!-- #Main Container -->
+
+	<!-- Js -->
+	<script type="text/javascript" charset="utf-8" src="js/jquery-latest.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.nice-select.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.mask.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/global.js"></script>
+</body>
+</html>

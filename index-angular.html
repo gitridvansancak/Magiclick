@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Lorem ipsum">
+	<meta name="description" content="Lorem ipsum">
+    <meta name="author" content="Lorem ipsum">
+	<title>Döviz Çevirici</title>
+	<!-- Css -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/nice-select.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/responsive.css">
+	<link rel="stylesheet" href="css/reset.css">
+</head>
+<body>
+	<!-- Main Container -->
+	<div id="main-container">
+		<div class="container">
+			<div class="row">
+
+				<!-- Title -->
+				<div class="col-md-12">
+					<h1>Piyasalar</h1>
+				</div>
+				<!-- #Title -->
+
+				<!-- Markets List -->
+				<div class="col-md-8 col-sm-12 col-xs-12 exc-list">
+					<div class="row" id="itemListContent" ng-controller="controller">
+						
+						
+					</div>
+				</div>
+				<!-- #Markets List -->
+
+				<!-- Exchange -->
+				<div class="col-md-4 col-sm-12 col-xs-12 exc-change">
+					<div class="exc-change-inner">
+						<h3>Döviz Çevir</h3>
+						<div class="exc-input">
+							<select id="exc-select">
+							</select>
+							<input type="text" class="input-global mask-money" id="money"/>
+						</div>
+						<img src="img/change-icon.svg" alt="Button Change">
+						<div class="exc-result">
+							<input type="text" class="input-global mask-money-response" id="response-money"/>
+						</div>
+						
+					</div>
+				</div>
+				<!-- #Exchange -->
+
+				<!-- Bottom Buttons -->
+				<div class="exc-buttons col-md-8 col-xs-12">
+					<div class="row">
+						<div class="col-md-6 col-xs-12">
+							<a href="javascript:;" title="Detaylı bilgi">Detaylı Bilgi</a>
+						</div>
+						<div class="col-md-6 col-xs-12">
+							<a href="javascript:;" title="Tüm piyasalar">Tüm Piyasalar <img src="img/go-icon.svg" class="desk-none" alt="Go arrow"></a>
+						</div>
+					</div>
+				</div>
+				<!-- #Bottom Buttons -->
+			</div>
+		</div>
+	</div>
+	<!-- #Main Container -->
+
+
+	<!-- Js -->
+	<script type="text/javascript" charset="utf-8" src="js/jquery-latest.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/angular.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.nice-select.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.mask.js"></script>
+
+    <script>
+        var app = angular.module('app', []);
+        app.controller('controller', function($scope, $http) {
+            /* Piyasalar listesi */
+            const exchangeList = [{
+                    short: "USD",
+                    long: "Amerikan Doları"
+                },
+                {
+                    short: "EUR",
+                    long: "Avrupa Para Birimi"
+                },
+                {
+                    short: "JPY",
+                    long: "Japon Yeni"
+                },
+                {
+                    short: "GBP",
+                    long: "İngiliz Sterlini"
+                },
+                {
+                    short: "DKK",
+                    long: "Danimarka Kronu"
+                },
+                {
+                    short: "NOK",
+                    long: "Norveç Kronu"
+                }];
+                /* Piyasalar ve döviz çevirici html oluşturma */
+                for (let i = 0; i < exchangeList.length; i++) {
+                    $http.get("https://api.exchangerate.host/latest?base="+exchangeList[i].short+"&symbols=TRY")
+                    .then(function(response) {
+                        var responseTry = response.data.rates.TRY.toString().slice(0, -4);
+                        const index = exchangeList.findIndex( (element) => element.short === exchangeList[i].short);
+                        /* Piyasalar itemlarını oluşturma */
+                        listHtml = '<div class="col-md-6 col-sm-6 col-xs-12 item-exchange" order="'+index+'"> <div class="exc-item"> <div class="row"> <div class="exc-flag col-md-2 col-sm-2 col-xs-2"> <img src="img/flags/'+exchangeList[i].short+'.png" alt="'+exchangeList[i].short+'"> </div> <div class="exc-type col-md-4 col-sm-4 col-xs-4"> <p>'+exchangeList[i].short+'</p> <span>'+exchangeList[i].long+'</span> </div> <div class="exc-buy col-md-3 col-sm-3 col-xs-3"> <p>ALIŞ</p> <span>'+responseTry+'</span> </div> <div class="exc-sell col-md-3 col-sm-3 col-xs-3"> <p>SATIŞ</p> <span>'+responseTry+'</span> </div> </div> </div> </div>';
+                        $('#itemListContent').append(listHtml);
+                        /* Select optionlarını oluşturma */
+                        $('#exc-select').append($('<option>', {
+                            value: exchangeList[i].short,
+                            text: exchangeList[i].short,
+                            order: index
+                        }));
+                        /* Sıralamayı indexe göre düzeltme */
+                        getSorted = function(selector, attrName) {
+                            return $(
+                              $(selector).toArray().sort(function(a, b){
+                                  var aVal = parseInt(a.getAttribute(attrName)),
+                                      bVal = parseInt(b.getAttribute(attrName));
+                                  return aVal - bVal;
+                              })
+                            );
+                        };
+                        $sortedItems = getSorted('#itemListContent .item-exchange', 'order').clone();
+                        $sortedOption = getSorted('#exc-select option', 'order').clone();
+                        $('#itemListContent').html( $sortedItems );
+                        $('#exc-select').html( $sortedOption );
+                        $('select').niceSelect('update');
+                    });
+                }
+                /* Form döviz çevirici fonksiyonu */
+                var getExchange = function(money){
+                    var valueMoney = parseInt($("#money").val().replace(/\./g,""));
+                    var valueMoneySym = $("select").val();
+                    $http.get("https://api.exchangerate.host/latest?base="+valueMoneySym+"&symbols=TRY").then(function(response) {
+                        var roundPrice = response.data.rates.TRY;
+                        var roundPrice = parseInt(roundPrice.toString().replace(/\./g,""));
+                        var responseMoney = valueMoney * roundPrice;
+                        if(valueMoneySym=="JPY" & responseMoney.toString().length < 7){
+                            responseMoney = "0"+responseMoney;
+                        }else if(valueMoneySym=="DKK"){
+                            responseMoney = responseMoney+"0";
+                        }
+                        responseMoney = responseMoney.toString().slice(0, -4);
+                        $('#response-money').val(responseMoney).trigger('input');
+                        return responseMoney;
+                    });
+                }
+                /* Para birimi değişimi */
+                $('select').on('change', function() {
+                    var money = $("#money").val();
+                    getExchange(money);
+                    $("#response-money").val(money);
+                });
+                /* Girilen miktarı çevirme */
+                $("#money").keyup(function(){
+                    var money = $("#money").val();
+                    getExchange(money);
+                    $("#response-money").val(money);
+                });
+        });
+        
+        $(document).ready(function() {
+            /* niceselect */
+            $('select').niceSelect();
+            /* inputmask */
+            $('.mask-money').mask('#.##0', {reverse: true});
+            $(".mask-money-response").mask('#.##0,00', {reverse: true});
+        }); 
+        </script>
+</body>
+</html>
